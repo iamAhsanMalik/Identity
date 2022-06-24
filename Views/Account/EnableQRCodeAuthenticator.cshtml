@@ -1,0 +1,33 @@
+﻿@model TwoFactorAuthenticationVM
+@{
+    ViewData["Title"] = "EnableQRCodeAuthenticator";
+}
+
+<h1>EnableQRCodeAuthenticator</h1>
+
+<p>
+    Please enter the code below in your autheticator App.
+</p>
+<p>
+    @Model.AuthToken
+</p>
+<p>
+    Alternatively, scan the below QRCode with your mobile phone.
+</p>
+<div id="qrCode"></div>
+
+<form method="post">
+    <input hidden asp-for="AuthToken" />
+    <div class="form-group">
+        Enter Code : <input type="text" class="form-control" asp-for="AuthCode" />
+
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+</form>
+
+@*@section Scripts{ 
+<script src="~/js/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrCode"), "@Model.QRCodeUrl");
+</script>
+}*@

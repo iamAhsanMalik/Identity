@@ -1,0 +1,63 @@
+﻿<header class="container-fluid shadow-md">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-md">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Authentication System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                </ul>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div class="ms-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" asp-area="" id="accountLogin" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hello @User.Identity?.Name
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="accountLogin">
+                                    <li class="nav-item">
+                                        <form class="form-inline" asp-area="" asp-action="Logout" asp-controller="Account"
+                                        asp-route-returnUrl="@Url.Page("/") method="post">
+                                            <button type="submit" class="dropdown-item">Sign out</button>
+                                        </form>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="ms-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 text-white btn-primary me-2" asp-area=""
+                                asp-controller="Account" id="accountLogin" asp-action="Login">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 text-white btn-dark" asp-area="" asp-controller="Account"
+                                id="accountLogin" asp-action="Register">
+                                    Register
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </nav>
+</header>

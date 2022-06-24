@@ -1,0 +1,10 @@
+global using IdentityManager.Global;
+global using IdentityManager.DbContext;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using IdentityManager.Models;
+global using Microsoft.AspNetCore.Mvc;
+global using System.ComponentModel.DataAnnotations;
+global using IdentityManager.ViewModels.Account;
+global using System.Diagnostics;

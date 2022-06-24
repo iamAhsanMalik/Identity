@@ -1,0 +1,64 @@
+﻿@model LoginVM
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Login";
+    var authenticationSchemes = await SignInManager.GetExternalAuthenticationSchemesAsync();
+    var loginProivders = authenticationSchemes.ToList();
+}
+
+<section class="container-fluid">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <form method="post" asp-action="Login" asp-controller="Account" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                            <h3 class="mb-5 text-center">Sign in</h3>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" asp-for="Email">Email</label>
+                                <input asp-for="Email" class="form-control form-control-lg" placeholder="Type your email" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" asp-for="Password">Password</label>s
+                                <input asp-for="Password" class="form-control form-control-lg" placeholder="Type your password" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-start mb-4">
+                                <input class="form-check-input" asp-for="RememberMe" />
+                                <label asp-for="RememberMe" class="form-check-label ms-2"> Remember password </label>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" type="submit">Login</button>
+                            </div>
+                            <p class="text-body mt-3">Forgot Password? <a asp-action="ForgotPassword" asp-controller="Account" class="fw-bold text-body"><u>Reset here</u></a></p>
+                            <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a asp-action="Register" asp-controller="Account" class="fw-bold text-body"><u>Register here</u></a></p>
+                        </form>
+                        @if (loginProivders.Count > 0)
+                        {
+                            <hr class="my-4">
+                            <form asp-controller="Account" asp-action="ExternalLogin" method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                                <div class="text-center row">
+                                    @foreach (var provider in loginProivders)
+                                    {
+                                        <div class="col-6 mb-3">
+                                            <button class="btn btn-primary" type="submit" name="LoginProvider" value="@provider.Name">@provider.Name Login</button>
+                                        </div>
+                                    }
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+ }
+}

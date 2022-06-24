@@ -1,0 +1,72 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="container-fluid">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h3 class="mb-5 text-center">Create an account</h3>
+                            <form method="post" asp-action="Register" asp-controller="Account">
+                                <div class=row>
+                                    <div class="form-outline mb-4 col-lg-6 col-sm-12">
+                                        <label class="form-label" asp-for="FirstName">First Name</label>
+                                        <input asp-for="FirstName" class="form-control form-control-lg"
+                                            placeholder="First Name" />
+                                        <span class="text-danger" asp-validation-for="FirstName"></span>
+                                    </div>
+                                    <div class="form-outline mb-4 col-lg-6 col-sm-12">
+                                        <label class="form-label" asp-for="LastName">Last Name</label>
+                                        <input asp-for="LastName" class="form-control form-control-lg"
+                                            placeholder="Last Name" />
+                                        <span class="text-danger" asp-validation-for="LastName"></span>
+                                    </div>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" asp-for="Email">Your Email</label>
+                                    <input asp-for="Email" class="form-control form-control-lg"
+                                        placeholder="Type your email" />
+                                    <span class="text-danger" asp-validation-for="Email"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" asp-for="Password">Password</label>
+                                    <input asp-for="Password" class="form-control form-control-lg"
+                                        placeholder="Type your password" />
+                                    <span class="text-danger" asp-validation-for="Password"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" asp-for="ConfirmPassword">Confirm password</label>
+                                    <input asp-for="ConfirmPassword" class="form-control form-control-lg"
+                                        placeholder="Repeat your password" />
+                                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                                </div>
+
+                                <div class="form-check d-flex mb-5">
+                                    <input class="form-check-input me-2" asp-for="TermsAgreement" />
+                                    <label class="form-check-label" asp-for="TermsAgreement">
+                                        I agree all statements in <a asp-action="" class="text-body"><u>Terms of
+                                                service</u></a>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                        asp-action="Login" asp-controller="Account" class="fw-bold text-body"><u>Login
+                                            here</u></a></p>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
